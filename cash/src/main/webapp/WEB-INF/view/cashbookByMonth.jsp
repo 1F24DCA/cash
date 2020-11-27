@@ -61,6 +61,7 @@
 				</c:if>
 				<c:if test="${i-(firstDayOfWeek-1) > 0}">
 					<div class="col" style="min-height: 5rem">
+						<!-- FIXME 토요일 및 일요일은 파랑, 빨강으로 표시 -->
 						<div><!-- 날짜 -->
 							<a href="${pageContext.request.contextPath}/admin/cashbookByDay/now/${currentYear}/${currentMonth}/${i-(firstDayOfWeek-1)}" class="font-weight-bold text-secondary">
 								${i-(firstDayOfWeek-1)}

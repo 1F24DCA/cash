@@ -14,6 +14,7 @@
 		<h2 class="text-center">HOME</h2>
 		<h5 class="text-center mb-5">최근 수입 및 지출 요약</h5>
 		<!-- 수입/지출 -->
+		<!-- TODO 차트를 보여주면 더 좋을것같음 -->
 		<div class="d-flex">
 			<c:forEach var="io" items="${inOutList}">
 				<div class="flex-fill">
