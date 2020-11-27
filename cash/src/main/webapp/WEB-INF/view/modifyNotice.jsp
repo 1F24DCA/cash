@@ -58,6 +58,7 @@
 				<tr class="border-bottom">
 					<td class="font-weight-bold">CONTENT</td>
 					<td>
+						<!-- TODO WYSIWYG 에디터 추가(네이버 스마트에디터 권장) -->
 						<textarea rows="5" cols="40" name="noticeContent" class="form-control">${notice.noticeContent}</textarea>
 					</td>
 				</tr>
