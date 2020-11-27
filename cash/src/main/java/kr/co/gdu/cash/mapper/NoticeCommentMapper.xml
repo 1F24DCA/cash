@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.gdu.cash.mapper.NoticeCommentMapper">
+	<insert id="insertNoticeComment" parameterType="kr.co.gdu.cash.vo.NoticeComment">
+		INSERT INTO notice_comment (
+			notice_id,
+			notice_comment_content
+		) VALUES (
+			#{noticeId},
+			#{noticeCommentContent}
+		)
+	</insert>
+	
+	<delete id="deleteNoticeComment" parameterType="int">
+		DELETE FROM notice_comment
+		WHERE
+			notice_comment_id = #{noticeCommentId}
+	</delete>
+	
+	<delete id="deleteNoticeCommentByNoticeId" parameterType="int">
+		DELETE FROM notice_comment
+		WHERE
+			notice_id = #{noticeId}
+	</delete>
+</mapper>

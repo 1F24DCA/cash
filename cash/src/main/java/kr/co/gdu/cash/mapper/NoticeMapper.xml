@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.gdu.cash.mapper.NoticeMapper">
+	<select id="selectNoticeCount" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM notice
+	</select>
+	
+	<resultMap type="kr.co.gdu.cash.vo.Notice" id="selectNoticeOneResult">
+		<result property="noticeId" column="notice_id" />
+		<result property="noticeTitle" column="notice_title" />
+		<result property="noticeContent" column="notice_content" />
+		<result property="noticeDate" column="notice_date" />
+		<collection property="noticeFileList" ofType="kr.co.gdu.cash.vo.NoticeFile">
+			<result property="noticeFileId" column="notice_file_id" />
+			<result property="noticeId" column="notice_id" />
+			<result property="noticeFileName" column="notice_file_name" />
+			<result property="noticeFileType" column="notice_file_type" />
+			<result property="noticeFileSize" column="notice_file_size" />
+		</collection>
+		<collection property="noticeCommentList" ofType="kr.co.gdu.cash.vo.NoticeComment">
+			<result property="noticeCommentId" column="notice_comment_id" />
+			<result property="noticeId" column="notice_id" />
+			<result property="noticeCommentContent" column="notice_comment_content" />
+		</collection>
+	</resultMap>
+	<select id="selectNoticeOne" parameterType="int" resultMap="selectNoticeOneResult">
+		SELECT
+			n.notice_id,
+			n.notice_title,
+			n.notice_content,
+			n.notice_date,
+			nf.notice_file_id,
+			nf.notice_file_name,
+			nf.notice_file_type,
+			nf.notice_file_size,
+			nc.notice_comment_id,
+			nc.notice_comment_content
+		FROM notice n
+			LEFT JOIN notice_file nf
+				ON n.notice_id = nf.notice_id
+			LEFT JOIN notice_comment nc
+				ON n.notice_id = nc.notice_id
+		WHERE n.notice_id = #{noticeId}
+	</select>
+	
+	<insert id="insertNotice" parameterType="kr.co.gdu.cash.vo.Notice">
+		<selectKey resultType="int" keyProperty="noticeId" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		INSERT INTO notice (
+			notice_title,
+			notice_content,
+			notice_date
+		) VALUES (
+			#{noticeTitle},
+			#{noticeContent},
+			NOW()
+		)
+	</insert>
+	
+	<update id="updateNotice" parameterType="kr.co.gdu.cash.vo.Notice">
+		UPDATE notice
+		SET notice_title = #{noticeTitle},
+			notice_content = #{noticeContent},
+			notice_date = NOW()
+		WHERE notice_id = #{noticeId}
+	</update>
+	
+	<delete id="deleteNotice" parameterType="int">
+		DELETE
+		FROM notice
+		WHERE notice_id = #{noticeId}
+	</delete>
+	
+	<select id="selectLatestNoiceList" resultType="kr.co.gdu.cash.vo.Notice">
+		SELECT 
+			notice_id noticeId,
+			notice_title noticeTitle
+		FROM notice
+		ORDER BY notice_date DESC
+		LIMIT 0, 5
+	</select>
+	
+	<select id="selectNoticeListByPage" parameterType="java.util.Map" resultType="kr.co.gdu.cash.vo.Notice">
+		SELECT
+			notice_id noticeId,
+			notice_title noticeTitle,
+			notice_date noticeDate
+		FROM notice
+		ORDER BY notice_date DESC
+		LIMIT #{beginRow}, #{rowPerPage}
+	</select>
+</mapper>

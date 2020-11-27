@@ -1,0 +1,21 @@
+@charset "UTF-8";
+body
+{
+	background-color: #EEFFDD;
+	margin: 0;
+}
+body > .container-xl
+{
+	padding-top: 4rem;
+	background-color: #FFFFFFCC;
+	min-height: 100vh;
+}
+h2
+{
+	padding-top: 1.5rem;
+}
+
+.bg-lightgray
+{
+	background-color: #DFF8BF;
+}
