@@ -27,6 +27,7 @@
 		</form>
 		
 		<div class="px-5">
+			<!-- FIXME 누락된 페이징 기능 추가 -->
 			<c:forEach var="g" items="${map['guestBookList']}">
 				<div class="border-bottom m-2 p-2">
 					<div class="font-weight-bold small">
@@ -35,10 +36,17 @@
 					<div class="mx-2">
 						${g.guestBookContent}
 					</div>
-					<div class="small text-right">
-						<a href="${pageContext.request.contextPath}/admin/removeGuestBook/${g.guestBookId}" class="font-weight-bold text-secondary">
-							REMOVE
-						</a>
+					<div class="clearfix">
+						<div class="float-left">
+							<span class="small">
+								${g.guestBookDate}
+							</span>						
+						</div>
+						<div class="float-right small text-right">
+							<a href="${pageContext.request.contextPath}/admin/removeGuestBook/${g.guestBookId}" class="font-weight-bold text-secondary">
+								REMOVE
+							</a>
+						</div>
 					</div>
 				</div>
 			</c:forEach>
