@@ -9,7 +9,6 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cash.css">
 </head>
 <body>
-	<!-- FIXME 공지 및 가계부 작성/수정/삭제에만 로그인 권한을 요구하도록 수정 -->
 	<jsp:include page="/WEB-INF/view/inc/menu.jsp"></jsp:include>
 	<div class="container-xl">
 		<div class="d-flex">
@@ -35,7 +34,6 @@
 				</form>
 			</div>
 			
-			<!-- TODO 방명록(비동기) 추가 및 공지 제거 -->
 			<div class="flex-grow-1 p-3">
 				<h2>NOTICE</h2>
 				<div>

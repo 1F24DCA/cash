@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<div class="text-center text-success text-decoration-none border-bottom py-2">
+<div class="text-center text-success border-bottom py-2">
 	<table class="table table-sm table-borderless text-center">
 		<thead>
 			<tr>

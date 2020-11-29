@@ -13,7 +13,7 @@
 	<div class="container-xl">
 		<h2 class="text-center">NOTICE</h2>
 		<div class="text-center mb-5">
-			<a href="${pageContext.request.contextPath}/admin/addNotice" class="font-weight-bold text-success text-decoration-none">ADD NOTICE</a>
+			<a href="${pageContext.request.contextPath}/admin/addNotice" class="font-weight-bold text-success">ADD NOTICE</a>
 		</div>
 		<table class="table table-sm table-borderless w-75 mx-auto">
 			<thead class="border-bottom">

@@ -61,11 +61,22 @@
 				</c:if>
 				<c:if test="${i-(firstDayOfWeek-1) > 0}">
 					<div class="col" style="min-height: 5rem">
-						<!-- FIXME 토요일 및 일요일은 파랑, 빨강으로 표시 -->
 						<div><!-- 날짜 -->
-							<a href="${pageContext.request.contextPath}/admin/cashbookByDay/now/${currentYear}/${currentMonth}/${i-(firstDayOfWeek-1)}" class="font-weight-bold text-secondary">
-								${i-(firstDayOfWeek-1)}
-							</a>
+							<c:if test="${(i-1)%7 == 0}">
+								<a href="${pageContext.request.contextPath}/admin/cashbookByDay/now/${currentYear}/${currentMonth}/${i-(firstDayOfWeek-1)}" class="font-weight-bold text-danger">
+									${i-(firstDayOfWeek-1)}
+								</a>
+							</c:if>
+							<c:if test="${(i-1)%7 > 0 && (i-1)%7 < 6}">
+								<a href="${pageContext.request.contextPath}/admin/cashbookByDay/now/${currentYear}/${currentMonth}/${i-(firstDayOfWeek-1)}" class="font-weight-bold text-secondary">
+									${i-(firstDayOfWeek-1)}
+								</a>
+							</c:if>
+							<c:if test="${(i-1)%7 == 6}">
+								<a href="${pageContext.request.contextPath}/admin/cashbookByDay/now/${currentYear}/${currentMonth}/${i-(firstDayOfWeek-1)}" class="font-weight-bold text-primary">
+									${i-(firstDayOfWeek-1)}
+								</a>
+							</c:if>
 						</div>
 						<!-- 지출/수입 목록이 있는 날짜를 cashList에서 검색 -->
 						<c:forEach var="c" items="${cashList}">

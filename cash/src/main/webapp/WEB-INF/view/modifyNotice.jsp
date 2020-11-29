@@ -5,8 +5,10 @@
 <head>
 <meta charset="UTF-8">
 <title>modifyNotice</title>
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/cash.css">
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 	$(document).ready(function() {
@@ -30,6 +32,8 @@
 			if (ck == false) {
 				alert('선택되지 않은 파일이 있습니다');
 			} else {
+				oEditors.getById["noticeContent"].exec("UPDATE_CONTENTS_FIELD", []);	// 에디터의 내용이 textarea에 적용됩니다.
+				
 				$('#modifyForm').submit();
 			}
 		});
@@ -58,8 +62,7 @@
 				<tr class="border-bottom">
 					<td class="font-weight-bold">CONTENT</td>
 					<td>
-						<!-- TODO WYSIWYG 에디터 추가(네이버 스마트에디터 권장) -->
-						<textarea rows="5" cols="40" name="noticeContent" class="form-control">${notice.noticeContent}</textarea>
+						<textarea id="noticeContent" name="noticeContent" style="width: 100%">${notice.noticeContent}</textarea>
 					</td>
 				</tr>
 				<tr class="border-bottom">
@@ -69,7 +72,7 @@
 							<c:if test="${nf.noticeFileId>0}">
 								<div class="border-bottom">
 									<div class="text-left">
-										<a href="${pageContext.request.contextPath}/upload/${nf.noticeFileName}" class="font-weight-bold text-secondary">${nf.noticeFileName}</a> TYPE:${nf.noticeFileType} SIZE:${nf.noticeFileSize}
+										<a href="${filePath}/upload/${nf.noticeFileName}" class="font-weight-bold text-secondary">${nf.noticeFileName}</a> TYPE:${nf.noticeFileType} SIZE:${nf.noticeFileSize}
 									</div>
 									<div class="small text-right">
 										<a href="${pageContext.request.contextPath}/admin/removeNoticeFile/${notice.noticeId}/${nf.noticeFileId}" class="font-weight-bold text-secondary">REMOVE</a>
@@ -101,5 +104,52 @@
 			</table>
 		</form>
 	</div>
+	
+	<script type="text/javascript" src="${pageContext.request.contextPath}/se2/js/service/HuskyEZCreator.js" charset="utf-8"></script>
+	<script type="text/javascript">
+		var oEditors = [];
+		var sLang = "ko_KR";	// 언어 (ko_KR/ en_US/ ja_JP/ zh_CN/ zh_TW), default = ko_KR
+		
+		// 추가 글꼴 목록
+		//var aAdditionalFontSet = [["MS UI Gothic", "MS UI Gothic"], ["Comic Sans MS", "Comic Sans MS"],["TEST","TEST"]];
+		
+		nhn.husky.EZCreator.createInIFrame({
+			oAppRef: oEditors,
+			elPlaceHolder: "noticeContent",
+			sSkinURI: "${pageContext.request.contextPath}/se2/SmartEditor2Skin.html",	
+			htParams : {
+				bUseToolbar : true,				// 툴바 사용 여부 (true:사용/ false:사용하지 않음)
+				bUseVerticalResizer : true,		// 입력창 크기 조절바 사용 여부 (true:사용/ false:사용하지 않음)
+				bUseModeChanger : true,			// 모드 탭(Editor | HTML | TEXT) 사용 여부 (true:사용/ false:사용하지 않음)
+				//bSkipXssFilter : true,		// client-side xss filter 무시 여부 (true:사용하지 않음 / 그외:사용)
+				//aAdditionalFontList : aAdditionalFontSet,		// 추가 글꼴 목록
+				fOnBeforeUnload : function(){
+					//alert("완료!");
+				},
+				I18N_LOCALE : sLang
+			}, //boolean
+			fOnAppLoad : function(){
+				//예제 코드
+				//oEditors.getById["ir1"].exec("PASTE_HTML", ["로딩이 완료된 후에 본문에 삽입되는 text입니다."]);
+			},
+			fCreator: "createSEditor2"
+		});
+		
+		function pasteHTML() {
+			var sHTML = "<span style='color:#FF0000;'>이미지도 같은 방식으로 삽입합니다.<\/span>";
+			oEditors.getById["noticeContent"].exec("PASTE_HTML", [sHTML]);
+		}
+		
+		function showHTML() {
+			var sHTML = oEditors.getById["noticeContent"].getIR();
+			alert(sHTML);
+		}
+		
+		function setDefaultFont() {
+			var sDefaultFont = '돋움';
+			var nFontSize = 9;
+			oEditors.getById["noticeContent"].setDefaultFont(sDefaultFont, nFontSize);
+		}
+	</script>
 </body>
 </html>

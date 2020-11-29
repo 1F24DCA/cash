@@ -18,7 +18,7 @@
 			<a href="${pageContext.request.contextPath}/admin/cashbookByDay/next/${currentYear}/${currentMonth}/${currentDay}" class="text-success text-decoration-none">▶</a>
 		</h5>
 		<div class="text-center mb-2">
-			<a href="${pageContext.request.contextPath}/admin/addCashbook?currentYear=${currentYear}&currentMonth=${currentMonth}&currentDay=${currentDay}" class="font-weight-bold text-success text-decoration-none">ADD CASHBOOK</a>
+			<a href="${pageContext.request.contextPath}/admin/addCashbook?currentYear=${currentYear}&currentMonth=${currentMonth}&currentDay=${currentDay}" class="font-weight-bold text-success">ADD CASHBOOK</a>
 		</div>
 		<table class="table table-sm table-borderless px-5">
 			<thead class="border-top border-bottom">
@@ -40,8 +40,8 @@
 						<td>${c.categoryName}</td>
 						<td>${c.cashbookPrice}</td>
 						<td>${c.cashbookContent}</td>
-						<td><a href="${pageContext.request.contextPath}/admin/modifyCashbook?cashbookId=${c.cashbookId}" class="font-weight-bold text-success text-decoration-none">MODIFY</a></td>
-						<td><a href="${pageContext.request.contextPath}/admin/removeCashbook?cashbookId=${c.cashbookId}" class="font-weight-bold text-success text-decoration-none">REMOVE</a></td>
+						<td><a href="${pageContext.request.contextPath}/admin/modifyCashbook?cashbookId=${c.cashbookId}" class="font-weight-bold text-success">MODIFY</a></td>
+						<td><a href="${pageContext.request.contextPath}/admin/removeCashbook?cashbookId=${c.cashbookId}" class="font-weight-bold text-success">REMOVE</a></td>
 					</tr>
 				</c:forEach>
 			</tbody>

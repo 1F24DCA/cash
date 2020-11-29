@@ -6,6 +6,7 @@
 			<a href="${pageContext.request.contextPath}/admin/index" class="text-light text-decoration-none" style="font-size: 2rem">Cashbook</a>
 		</li>
 		<c:if test="${loginId != null}">
+			<!-- TODO CALENDAR과 IN/OUT LIST를 chartMenu처럼 독립적으로 표시 -->
 			<li class="nav-item my-auto">
 				<a href="${pageContext.request.contextPath}/admin/cashbookByMonth" class="nav-link text-light text-decoration-none">CALENDAR</a>
 			</li>
@@ -16,10 +17,13 @@
 				<a href="${pageContext.request.contextPath}/admin/noticeList" class="nav-link text-light text-decoration-none">NOTICE</a>
 			</li>
 			<li class="nav-item my-auto">
+				<a href="${pageContext.request.contextPath}/admin/addMember" class="nav-link text-light text-decoration-none">MEMBER</a>
+			</li>
+			<li class="nav-item my-auto">
 				<a href="${pageContext.request.contextPath}/admin/chart1.jsp" class="nav-link text-light text-decoration-none">CHART</a>
 			</li>
 			<li class="nav-item my-auto">
-				<a href="${pageContext.request.contextPath}/admin/addMember" class="nav-link text-light text-decoration-none">MEMBER</a>
+				<a href="${pageContext.request.contextPath}/admin/guestBook" class="nav-link text-light text-decoration-none">GUESTBOOK</a>
 			</li>
 			<li class="nav-item ml-4 my-auto">
 				<a href="${pageContext.request.contextPath}/admin/logout" class="nav-link text-light text-decoration-none">LOGOUT</a>

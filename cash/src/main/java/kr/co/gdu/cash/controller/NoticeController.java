@@ -3,6 +3,8 @@ package kr.co.gdu.cash.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.co.gdu.cash.CashApplication;
 import kr.co.gdu.cash.service.NoticeService;
 import kr.co.gdu.cash.vo.Notice;
 import kr.co.gdu.cash.vo.NoticeForm;
@@ -46,9 +49,11 @@ public class NoticeController {
 	}
 	// 공지 상세 보기
 	@GetMapping("/admin/noticeOne/{noticeId}")
-	public String noticeOne(Model model, @PathVariable(value="noticeId") int noticeId) {
+	public String noticeOne(Model model, @PathVariable(value="noticeId") int noticeId, HttpServletRequest request) {
 		Notice notice = noticeService.getNoticeOne(noticeId);
+		
 		model.addAttribute("notice", notice);
+		model.addAttribute("filePath", CashApplication.getFilePath(request));
 		return "noticeOne";
 	}
 	// 공지 삭제
@@ -59,9 +64,11 @@ public class NoticeController {
 	}
 	// 공지 수정 폼
 	@GetMapping("/admin/modifyNotice/{noticeId}")
-	public String modifyNotice(Model model, @PathVariable(value="noticeId") int noticeId) {
+	public String modifyNotice(Model model, @PathVariable(value="noticeId") int noticeId, HttpServletRequest request) {
 		Notice notice = noticeService.getNoticeOne(noticeId);
+		
 		model.addAttribute("notice", notice);
+		model.addAttribute("filePath", CashApplication.getFilePath(request));
 		return "modifyNotice";
 	}
 	// 공지 수정 액션

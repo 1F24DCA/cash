@@ -13,8 +13,8 @@
 	<div class="container-xl">
 		<h2 class="text-center">NOTICE</h2>
 		<div class="text-center mt-5 mb-2">
-			<a href="${pageContext.request.contextPath}/admin/modifyNotice/${notice.noticeId}" class="font-weight-bold text-success text-decoration-none mx-2">MODIFY NOTICE</a>
-			<a href="${pageContext.request.contextPath}/admin/removeNotice/${notice.noticeId}"class="font-weight-bold text-success text-decoration-none mx-2">REMOVE NOTICE</a>
+			<a href="${pageContext.request.contextPath}/admin/modifyNotice/${notice.noticeId}" class="font-weight-bold text-success mx-2">MODIFY NOTICE</a>
+			<a href="${pageContext.request.contextPath}/admin/removeNotice/${notice.noticeId}"class="font-weight-bold text-success mx-2">REMOVE NOTICE</a>
 		</div>
 		<table class="table table-sm table-borderless w-75 mx-auto">
 			<tr class="border-top border-bottom">
@@ -39,8 +39,7 @@
 					<c:forEach var="nf" items="${notice.noticeFileList}">
 						<c:if test="${nf.noticeFileId>0}">
 							<div>
-								<!-- FIXME 우분투에 올라갈 때 경로 지정(아마도 model로 받아오는 편이 좋을듯함) -->
-								<a href="${pageContext.request.contextPath}/upload/${nf.noticeFileName}" class="font-weight-bold text-secondary">${nf.noticeFileName}</a> TYPE:${nf.noticeFileType} SIZE:${nf.noticeFileSize}
+								<a href="${filePath}/${nf.noticeFileName}" class="font-weight-bold text-secondary">${nf.noticeFileName}</a> TYPE:${nf.noticeFileType} SIZE:${nf.noticeFileSize}
 							</div>
 						</c:if>
 					</c:forEach>

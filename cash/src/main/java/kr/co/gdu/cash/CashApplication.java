@@ -1,5 +1,7 @@
 package kr.co.gdu.cash;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
@@ -13,5 +15,14 @@ public class CashApplication {
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CashApplication.class, args);
+	}
+	
+	// TODO 다른 방법으로 FilePath를 구하는 방법을 강구할 것! 너무 지저분해보임
+	public static String getFilePath(HttpServletRequest request) {
+		String filePath = CashApplication.UPLOAD_PATH.replaceAll("\\\\", "/");
+		filePath = filePath.replaceAll("^.+ROOT(.+)$", "$1");
+		filePath = filePath.replaceAll("^.+static(.+)$", request.getContextPath()+"$1");
+		
+		return filePath;
 	}
 }

@@ -14,7 +14,7 @@
 		<h2 class="text-center">IN/OUT LIST</h2>
 		
 		<div class="text-center mb-5">
-			<a href="${pageContext.request.contextPath}/admin/cashbookListExcel" class="font-weight-bold text-success text-decoration-none">DOWNLOAD EXCEL</a>
+			<a href="${pageContext.request.contextPath}/admin/cashbookListExcel" class="font-weight-bold text-success">DOWNLOAD EXCEL</a>
 		</div>
 		
 		<table class="table table-sm table-borderless">
@@ -46,7 +46,6 @@
 			</tbody>
 		</table>
 		
-		<!-- FIXME 페이지 갯수 받아와서 마지막 페이지 출력 및 조건 변경 -->
 		<div class="text-center">
 			<c:if test="${currentPage > 1}">
 				<a href="${pageContext.request.contextPath}/admin/cashbookList/${currentPage-1}" class="text-success text-decoration-none">◀</a>

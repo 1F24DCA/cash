@@ -14,7 +14,6 @@
 		<h2 class="text-center">HOME</h2>
 		<h5 class="text-center mb-5">최근 수입 및 지출 요약</h5>
 		<!-- 수입/지출 -->
-		<!-- TODO 차트를 보여주면 더 좋을것같음 -->
 		<div class="d-flex">
 			<c:forEach var="io" items="${inOutList}">
 				<div class="flex-fill">
@@ -39,7 +38,7 @@
 		<!-- 공지 -->
 		<h2 class="text-center mt-4">NOTICE</h2>
 		<div class="text-center mb-5">
-			<a href="${pageContext.request.contextPath}/admin/noticeList" class="font-weight-bold text-success text-decoration-none">MORE</a>
+			<a href="${pageContext.request.contextPath}/admin/noticeList" class="font-weight-bold text-success">MORE</a>
 		</div>
 		<table class="table table-sm table-borderless w-50 mx-auto">
 			<thead class="border-bottom">
